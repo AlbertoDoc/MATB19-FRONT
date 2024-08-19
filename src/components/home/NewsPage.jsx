@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { getAllPlaces } from "../../services/places/getAllPlaces";
 import Header from "./Header"
 import Carousel from "./Carousel"
@@ -14,7 +14,7 @@ import NewsGrid from "../news/NewsGrid"
  * 
  */
 
-export default function Places(){
+export default function NewsPage(){
    const [newsList, setNewsList] = useState([]);
    const token = localStorage.getItem("token");
 
