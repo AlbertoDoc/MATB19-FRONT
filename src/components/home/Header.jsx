@@ -19,8 +19,6 @@ export default function Header(){
     const isAdmin = localStorage.getItem("isAdmin") == "true";
     const isPaginaInicial = location.pathname == ("/");
     const isLogged = localStorage.getItem("token") != null
-
-    console.log(isLogged)
     
     /**
      * Limpa os status de login no localStorage.

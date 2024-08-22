@@ -1,5 +1,5 @@
-export const BACKEND_URL = 'https://matb-19-back.vercel.app/'
-//export const BACKEND_URL = 'http://localhost:3000/'
+//export const BACKEND_URL = 'https://matb-19-back.vercel.app/'
+export const BACKEND_URL = 'http://localhost:3000/'
 
 export const USERS_ENDPOINT = BACKEND_URL + 'user/'
 
@@ -22,3 +22,7 @@ export const UPDATE_PLACE_ENDPOINT = BACKEND_URL + 'touristAttraction/'
 export const DELETE_PLACE_ENDPOINT = BACKEND_URL + 'touristAttraction/'
 
 export const ALL_PLACES_ENDPOINT = BACKEND_URL + 'touristAttraction/all/'
+
+export const ALL_ARTICLES_ENDPOINT = BACKEND_URL + 'article/all/'
+
+export const CREATE_ARTICLE_ENDPOINT = BACKEND_URL + 'article/create/'

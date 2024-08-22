@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import Header from "../home/Header";
 import { useParams } from "react-router-dom"
-import { getAllPlaces } from "../../services/places/getAllPlaces";
+import { getAllArticles } from "../../services/articles/getAllArticles";
 
 export default function NewsDetails() {
     const [news, setNews] = useState()
@@ -15,7 +15,7 @@ export default function NewsDetails() {
     }, []);
     
     function loadNews() {
-        getAllPlaces(token)
+        getAllArticles(token)
         .then((data) => {
             console.log(data);
             data.forEach(element => {
@@ -35,10 +35,10 @@ export default function NewsDetails() {
             <Header />
             { news ?
                 <div style={{ marginLeft: '16px', marginRight: '16px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <h1 style={{marginTop: '16px', marginBottom: '16px'}}>{news.name}</h1> 
-                    <img style={{marginTop: '16px', marginBottom: '16px'}} className="imagem" src={news.image} alt={news.name} />
+                    <h1 style={{marginTop: '16px', marginBottom: '16px'}}>{news.title}</h1> 
+                    <img style={{marginTop: '16px', marginBottom: '16px'}} className="imagem" src={news.image} alt={news.title} />
                     <p style={{whiteSpace: 'pre-line', textAlign: 'justify', textJustify: 'inter-word', fontSize: '18px'}}>
-                        {news.description}
+                        {news.text}
                     </p>
                 </div>
             : <></> }
