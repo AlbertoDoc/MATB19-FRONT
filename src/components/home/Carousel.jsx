@@ -20,10 +20,10 @@ export default function Carousel({ newsList }) {
                 "carousel-item section" + (index == 0 ? " active" : "")
               }
             >
-              <h1 className="mainTitle">{news.name}</h1>
+              <h1 className="mainTitle">{news.title}</h1>
               <div className="container-carousel">
-                <img className="imagem" src={news.image} alt={news.name} />
-                <p className="descricao">{news.description}</p>
+                <img className="imagem" src={news.image} alt={news.title} />
+                <p className="descricao">{news.text}</p>
               </div>
             </div>
           ))}
