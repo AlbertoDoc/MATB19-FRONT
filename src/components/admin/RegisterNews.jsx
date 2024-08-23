@@ -1,20 +1,19 @@
-import React, { useContext, useState, useRef } from "react";
+import { useContext, useState, useRef } from "react";
 import Alert from "../login/Alert";
 import { AlertContext } from "../../contexts/alertContext";
 import { AlertTypeContext } from "../../contexts/alertTypeContext";
 import { AlertColorContext } from "../../contexts/alertColorContext";
-import { registerPlace } from "../../services/places/registerPlace";
 import Header from "../home/Header"
 import { useNavigate } from "react-router-dom";
 import '../../styles/global.css'
 import '../../styles/new_places.css'
+import { postArticle } from "../../services/articles/postArticle";
 
 const initialFormState = {
     title: '',
-    desc: '',
+    text: '',
     image: '',
-    endereco: '',
-    horario:''
+    video: ''
 };
 
 
@@ -36,7 +35,7 @@ export default function RegisterNews(){
 
         setTimeout(() => {
             setShowAlert(false);
-          }, 2000)
+        }, 2000)
     }
 
 
@@ -47,74 +46,58 @@ export default function RegisterNews(){
     function handleImageChange(event) {
         const file = event.target.files[0];
         if (file) {
-          setImage(file)
-          };
+            setImage(file)
+        }
     }
 
     function handleSubmit(event){
         event.preventDefault();
         console.log(form)
+        console.log(image)
 
-        if(form.title && form.desc && form.endereco && form.horario && image){
-            
-             registerPlace(form.title, form.endereco,  form.horario, form.desc, image, token)
-                      .then((data)=>{
-
-                        handleAlert(true, 'Cadastro realizado com sucesso', 'success')
-                        setForm(initialFormState); // Redefinir o formulário
-                                if (fileInputRef.current) {
-                                    fileInputRef.current.value = ''; // Redefinir o campo de entrada de arquivo
-                                }
+        if (form.title && form.text && form.video && image) {
+            postArticle(form.title, form.video,  form.text, image, token)
+                .then((data) => {
+                    handleAlert(true, 'Cadastro realizado com sucesso', 'success')
+                    setForm(initialFormState); // Redefinir o formulário
+                        if (fileInputRef.current) {
+                            fileInputRef.current.value = ''; // Redefinir o campo de entrada de arquivo
+                        }
                         navigate(-1);
-                      })
-                      .catch((error) => {
-                        handleAlert(true, 'Algum erro ocorreu durante o cadastro, tente novamente', 'danger')  
-                
-                          console.log(error.response.status)
-                         
-                      } )
-        
-
-                }else{
-                    handleAlert(true, 'Preencha todos os campos', 'danger')    
-                
-            }
-
+                })
+                .catch((error) => {
+                    handleAlert(true, 'Algum erro ocorreu durante o cadastro, tente novamente', 'danger')  
+                    console.log(error.response.status)
+                })
+        } else {
+            handleAlert(true, 'Preencha todos os campos', 'danger')        
+        }
     } 
     
-
-
     return(
         <>
-        <Alert></Alert>
-        <Header />
-        <div className='background mainContainerPlaces'>
+            <Alert></Alert>
+            <Header />
+            <div className='background mainContainerPlaces'>
+                    <form className='subcontainer' onSubmit={handleSubmit}>
+                    <h1 className='placeTitle'>Cadastro de notícias</h1>
 
-       
+                    <h3 className='titlePlaces'>Título</h3>
+                    <input className='inputTitle' type="text" name='title' value={form.title} onChange={handleChange}/>
 
-                <form className='subcontainer' onSubmit={handleSubmit}>
-                <h1 className='placeTitle'>Cadastro de notícias</h1>
+                    <h3 className='titlePlaces'>URL do vídeo</h3>
+                    <input className='inputTitle' type="urlVideo" name='video' value={form.video} onChange={handleChange}/>
 
-                <h3 className='titlePlaces'>Título</h3>
-                <input className='inputTitle' type="text" name='title' value={form.title} onChange={handleChange}/>
+                    <h3 className='titlePlaces'>Texto</h3>
+                    <textarea className='inputDesc' name='text' value={form.text} onChange={handleChange}/>
 
-                <h3 className='titlePlaces'>Endereço</h3>
-                <input className='inputTitle' type="text" name='endereco' value={form.endereco} onChange={handleChange}/>
+                    <h3 className='titlePlaces'>Imagem da notícia</h3>
+                    {image && <img className="imagem" src={URL.createObjectURL(image)} alt={form.title} />}
+                    <input className='inputFile' type="file" ref={fileInputRef} onChange={handleImageChange}/>
 
-                <h3 className='titlePlaces'>Horário de funcionamento</h3>
-                <input className='inputTitle' type="text" name='horario' value={form.horario} onChange={handleChange}/>
-
-                <h3 className='titlePlaces'>Descrição</h3>
-                <textarea className= 'inputDesc' name='desc' value={form.desc} onChange={handleChange}/>
-
-                <h3 className='titlePlaces'>Imagem da notícia</h3>
-                {image && <img className="imagem" src={URL.createObjectURL(image)} alt={form.title} />}
-                <input className='inputFile' type="file" ref={fileInputRef} onChange={handleImageChange}/>
-
-                <button className='button cadastrar' type="submit">Cadastrar</button>
-                </form>
-
-        </div>
+                    <button className='button cadastrar' type="submit">Cadastrar</button>
+                    </form>
+            </div>
         </>
     )
 }

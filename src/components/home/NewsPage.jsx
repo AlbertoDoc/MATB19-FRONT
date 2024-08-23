@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { getAllPlaces } from "../../services/places/getAllPlaces";
+import { getAllArticles } from "../../services/articles/getAllArticles";
 import Header from "./Header"
 import Carousel from "./Carousel"
 import '../../styles/global.css'
@@ -23,7 +23,7 @@ export default function NewsPage(){
     }, []);
   
     function loadNews() {
-      getAllPlaces(token)
+      getAllArticles(token)
         .then((data) => {
           console.log(data);
           setNewsList(data);

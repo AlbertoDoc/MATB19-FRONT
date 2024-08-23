@@ -11,7 +11,7 @@ export default function NewsGrid({ newsList }) {
                             <Card.Img width={250} height={250} src={article.image} variant="top" />
                             <Card.Body>
                                 <Card.Title className="h1">{article.name}</Card.Title>
-                                <Card.Text className="text-truncate">{article.description}</Card.Text>
+                                <Card.Text className="text-truncate">{article.text}</Card.Text>
                                 <a className="stretched-link" href={`/news/details/${article._id}`}>Leia Mais</a>
                             </Card.Body>
                         </Card>
