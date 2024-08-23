@@ -2,13 +2,15 @@ import { useState, useEffect } from "react"
 import Header from "../home/Header";
 import { useParams } from "react-router-dom"
 import { getAllArticles } from "../../services/articles/getAllArticles";
+import { deleteArticle } from "../../services/articles/deleteArticle";
+import { useNavigate } from "react-router-dom";
 
 export default function NewsDetails() {
     const [news, setNews] = useState()
     const { id } = useParams()
     const token = localStorage.getItem("token");
-
-    console.log(id)
+    const isAdmin = localStorage.getItem("isAdmin") == "true";
+    const navigate = useNavigate();
 
     useEffect(() => {
         loadNews();
@@ -17,17 +19,31 @@ export default function NewsDetails() {
     function loadNews() {
         getAllArticles(token)
         .then((data) => {
-            console.log(data);
             data.forEach(element => {
                 if (element._id == id) {
                     setNews(element)
-                    console.log(element)
                 }
             });
         })
         .catch((error) => {
             console.log(error);
         });
+    }
+
+    function handleDeleteNews() {
+        deleteArticle(news._id, token)
+        .then((data) => {
+            console.log(data)
+            alert("Noticia deletada com sucesso!")
+            navigate("/")
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
+
+    function handleEditNews() {
+        navigate(`/admin/update-news/${news._id}`)
     }
 
     return (
@@ -40,6 +56,13 @@ export default function NewsDetails() {
                     <p style={{whiteSpace: 'pre-line', textAlign: 'justify', textJustify: 'inter-word', fontSize: '18px'}}>
                         {news.text}
                     </p>
+                    {isAdmin ?
+                        <>
+                            <button onClick={handleEditNews}>Editar notícia</button>
+                            <button onClick={handleDeleteNews}>Apagar notícia</button>
+                        </>
+                    : <></> 
+                    }
                 </div>
             : <></> }
         </>

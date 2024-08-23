@@ -11,7 +11,6 @@ import { useLocation } from 'react-router-dom';
  *
  */
 
-
 export default function Header(){
     const navigate = useNavigate();
     const location = useLocation();
@@ -41,25 +40,22 @@ export default function Header(){
     }
 
     return(
-
-
         <header className="cabecalho">
-        
-        {isPaginaInicial ? <div/> : <button className="text-ola" type="button" onClick={goBack}>{"< Voltar"}</button>}
-        
-        <div className="dropdown-center" >
-        <button className="text-ola dropdown-toggle" type="button" data-bs-toggle="dropdown">Olá, seja bem vindo(a)</button>
-            {isLogged ? 
-            <ul className="dropdown-menu">
-                <li className="dropdown-item"><Link to='/updateUser' className="text-editar menu-item">Editar perfil</Link></li> 
-                <li className="dropdown-item"><Link to='/' className="text-editar menu-item" onClick={handleStatusLogin}>Sair</Link></li>
-            </ul> :
-            <ul className="dropdown-menu">
-                <li className="dropdown-item"><Link to='/login' className="text-editar menu-item">Entrar</Link></li>
-            </ul>
-            }
-        </div>
-
+            {isPaginaInicial ? <div/> : <button className="text-ola" type="button" onClick={goBack}>{"< Voltar"}</button>}
+            
+            <div className="dropdown-center" >
+            <button className="text-ola dropdown-toggle" type="button" data-bs-toggle="dropdown">Olá, seja bem vindo(a)</button>
+                {isLogged ? 
+                <ul className="dropdown-menu">
+                    <li className="dropdown-item"><Link to='/updateUser' className="text-editar menu-item">Editar perfil</Link></li> 
+                    {isAdmin ? <li className="dropdown-item"><Link to='/admin/home' className="text-editar menu-item">Painel admin</Link></li> : <></>}
+                    <li className="dropdown-item"><Link to='/' className="text-editar menu-item" onClick={handleStatusLogin}>Sair</Link></li>
+                </ul> :
+                <ul className="dropdown-menu">
+                    <li className="dropdown-item"><Link to='/login' className="text-editar menu-item">Entrar</Link></li>
+                </ul>
+                }
+            </div>
         </header>
     )
 }

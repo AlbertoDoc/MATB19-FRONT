@@ -26,3 +26,7 @@ export const ALL_PLACES_ENDPOINT = BACKEND_URL + 'touristAttraction/all/'
 export const ALL_ARTICLES_ENDPOINT = BACKEND_URL + 'article/all/'
 
 export const CREATE_ARTICLE_ENDPOINT = BACKEND_URL + 'article/create/'
+
+export const DELETE_ARTICLE_ENDPOINT = BACKEND_URL + 'article/'
+
+export const UPDATE_ARTICLE_ENDPOINT = BACKEND_URL + 'article/'

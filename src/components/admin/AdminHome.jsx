@@ -17,7 +17,7 @@ export default function AdminHome(){
 
                     <button className="button"><Link to='/admin' className="link-ver">Editar usuários</Link></button>
                     <button className="button"><Link to='/admin/new-places' className="link-ver">Cadastrar notícias</Link></button>
-                    <button className="button"><Link to='/home' className="link-ver">Ver notícias</Link></button>
+                    <button className="button"><Link to='/' className="link-ver">Ver notícias</Link></button>
 
                 </section>
 
