@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import { getAllArticles } from "../../services/articles/getAllArticles";
 import { deleteArticle } from "../../services/articles/deleteArticle";
 import { useNavigate } from "react-router-dom";
+import ReactPlayer from 'react-player'
 
 export default function NewsDetails() {
     const [news, setNews] = useState()
@@ -56,6 +57,9 @@ export default function NewsDetails() {
                     <p style={{whiteSpace: 'pre-line', textAlign: 'justify', textJustify: 'inter-word', fontSize: '18px'}}>
                         {news.text}
                     </p>
+                    <div className='player-wrapper' style={{marginTop: '16px', marginBottom: '16px'}}>
+                        {news.video ? <ReactPlayer url={news.video} controls={true} />: null}
+                    </div>
                     {isAdmin ?
                         <>
                             <button onClick={handleEditNews}>Editar notícia</button>
