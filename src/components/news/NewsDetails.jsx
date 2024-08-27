@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import ReactPlayer from 'react-player'
 import TextToSpeech from '../TextToSpeech';
 
-
 export default function NewsDetails() {
   const [news, setNews] = useState();
   const { id } = useParams();
