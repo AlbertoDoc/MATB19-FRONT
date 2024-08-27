@@ -1,13 +1,91 @@
 .cabecalho {
+  position: relative;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   font-size: 14px;
-  padding: 10px;
-  background-color: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  padding: 8px;
+  background-color: transparent; 
+  border-bottom: 1px solid #C5C5C5;
+  box-shadow: none;
   color: #2d2a2a;
-  height: 40px;
-  border-bottom: 2px solid rgb(146, 143, 143);
+}
+
+.portal-nome {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.portal-nome h1 {
+  margin: 0;
+  font-size: 24px;
+  font-family: "Poetsen One", "sans-serif";
+  color: #2d2a2a;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 120px;
+}
+
+.card {
+  margin-left: 20px;
+  margin-bottom: 28px;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 8px;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+  font-family: "Georgia", serif;
+  font-size: 1.5rem;
+  color: #2d2a2a;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  font-family: "Arial", sans-serif;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.5;
+  max-height: 4.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stretched-link {
+  padding: 8px 16px;
+  background-color: #744344;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+}
+
+.stretched-link:hover {
+  background-color: #744344;
+}
+
+.container {
+  padding: 0 15px;
+  margin-bottom: 40px;
+}
+
+.dropdown-center {
+  display: flex;
+  align-items: center;
+  margin-right: 120px;
 }
 
 .container-carousel {
@@ -18,6 +96,7 @@
   margin: 80px;
   text-align: center;
 }
+
 .text-date,
 .text-ola,
 .text-editar {
@@ -44,7 +123,7 @@
   font-family: "Poetsen One", "sans-serif";
   font-size: 40px;
   color: #2d2a2a;
-  margin-top: 20px;
+  margin-top: 22px;
   margin-bottom: 20px;
 }
 
@@ -88,7 +167,6 @@
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
   background-color: #2d2a2a25;
-
   height: 40px !important;
   color: black !important;
 }

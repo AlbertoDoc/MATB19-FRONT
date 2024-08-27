@@ -76,9 +76,10 @@ export default function RegisterNews(){
     
     return(
         <>
-            <Alert></Alert>
+        <div className="background">
+        <Alert></Alert>
             <Header />
-            <div className='background mainContainerPlaces'>
+            <div className='mainContainerPlaces'>
                     <form className='subcontainer' onSubmit={handleSubmit}>
                     <h1 className='placeTitle'>Cadastro de notícias</h1>
 
@@ -98,6 +99,8 @@ export default function RegisterNews(){
                     <button className='button cadastrar' type="submit">Cadastrar</button>
                     </form>
             </div>
+        </div>
+          
         </>
     )
 }
