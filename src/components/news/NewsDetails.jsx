@@ -5,6 +5,7 @@ import { getAllArticles } from "../../services/articles/getAllArticles";
 import { deleteArticle } from "../../services/articles/deleteArticle";
 import { useNavigate } from "react-router-dom";
 import ReactPlayer from 'react-player'
+import TextToSpeech from '../TextToSpeech';
 
 export default function NewsDetails() {
     const [news, setNews] = useState()
@@ -60,6 +61,9 @@ export default function NewsDetails() {
                     <div className='player-wrapper' style={{marginTop: '16px', marginBottom: '16px'}}>
                         {news.video ? <ReactPlayer url={news.video} controls={true} />: null}
                     </div>
+
+                    <TextToSpeech title={news.title} text={news.text}/>
+
                     {isAdmin ?
                         <>
                             <button onClick={handleEditNews}>Editar notícia</button>
